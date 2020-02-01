@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
+import CallToAction from '../ui/CallToAction';
 
 const Quotebox = () => {
   const [loading, setLoading] = useState(true);
@@ -21,21 +22,33 @@ const Quotebox = () => {
 
   const tweetText = `${quote} -${author}`;
   return (
-    <div id="quote-box">
-      {loading ? (
-        <ClipLoader />
-      ) : (
-        <>
-          <p id="text">{quote}</p>
-          {!!author && <p id="author">- {author}</p>}
-        </>
-      )}
-      <button id="new-quote" onClick={getAndSetNewQuote}>
-        New Quote
-      </button>
-      <a id="tweet-quote" href={`https://twitter.com/intent/tweet?text=${tweetText}`}>
-        Twitter
-      </a>
+    <div id="quote-box" className="bg-red-500 rounded-lg w-6/12">
+      <div className="p-8">
+        <div className="pb-4 h-40">
+          {loading ? (
+            <div className="text-center">
+              <ClipLoader />
+            </div>
+          ) : (
+            <>
+              <p className=" font-sans text-gray-100 text-xl" id="text">
+                &ldquo;{quote}&rdquo;
+              </p>
+              {!!author && (
+                <p className="text-right font-serif text-lg text-red-200" id="author">
+                  - {author}
+                </p>
+              )}
+            </>
+          )}
+        </div>
+        <CallToAction id="new-quote" onClick={getAndSetNewQuote}>
+          New Quote
+        </CallToAction>
+        <a id="tweet-quote" href={`https://twitter.com/intent/tweet?text=${tweetText}`}>
+          Twitter
+        </a>
+      </div>
     </div>
   );
 };
