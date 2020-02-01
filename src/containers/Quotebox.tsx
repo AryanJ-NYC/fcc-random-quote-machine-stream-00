@@ -21,7 +21,11 @@ const Quotebox = () => {
     getAndSetNewQuote();
   }, []);
 
-  const tweetText = `${quote} -${author}`;
+  let tweetText = `"${quote}"`;
+  if (author) {
+    tweetText += ` - ${author}`;
+  }
+
   return (
     <div id="quote-box" className="w-6/12 bg-red-500 rounded-lg">
       <div className="p-8">
